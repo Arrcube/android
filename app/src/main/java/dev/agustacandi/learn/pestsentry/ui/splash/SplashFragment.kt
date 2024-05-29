@@ -7,18 +7,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dev.agustacandi.learn.pestsentry.R
 import dev.agustacandi.learn.pestsentry.base.BaseFragment
-import dev.agustacandi.learn.pestsentry.databinding.FragmentLoginBinding
+import dev.agustacandi.learn.pestsentry.databinding.FragmentSplashBinding
 import dev.agustacandi.learn.pestsentry.utils.ConstVal
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
 
-class SplashFragment : BaseFragment<FragmentLoginBinding>() {
+class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentLoginBinding = FragmentLoginBinding.inflate(inflater, container, false)
+    ): FragmentSplashBinding = FragmentSplashBinding.inflate(inflater, container, false)
 
     override fun initIntent() {
     }
