@@ -2,6 +2,7 @@ package dev.agustacandi.learn.pestsentry.ui.splash
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -9,6 +10,7 @@ import dev.agustacandi.learn.pestsentry.R
 import dev.agustacandi.learn.pestsentry.base.BaseFragment
 import dev.agustacandi.learn.pestsentry.databinding.FragmentSplashBinding
 import dev.agustacandi.learn.pestsentry.utils.ConstVal
+import dev.agustacandi.learn.pestsentry.utils.ext.gone
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
