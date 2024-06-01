@@ -51,4 +51,10 @@
         android:name="dev.agustacandi.learn.pestsentry.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <action
+        android:id="@+id/action_global_registerFragment"
+        app:destination="@id/registerFragment" />
+    <action
+        android:id="@+id/action_global_loginFragment"
+        app:destination="@id/loginFragment" />
 </navigation>

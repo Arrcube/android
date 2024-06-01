@@ -3,6 +3,8 @@ package dev.agustacandi.learn.pestsentry.ui.login
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import dev.agustacandi.learn.pestsentry.R
 import dev.agustacandi.learn.pestsentry.base.BaseFragment
 import dev.agustacandi.learn.pestsentry.databinding.FragmentLoginBinding
 
@@ -20,6 +22,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     override fun initAction() {
+        binding.apply {
+            btnToRegister.setOnClickListener {
+                findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            }
+        }
     }
 
     override fun initProcess() {

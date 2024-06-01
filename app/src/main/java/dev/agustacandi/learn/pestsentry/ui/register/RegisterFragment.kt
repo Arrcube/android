@@ -20,6 +20,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
     }
 
     override fun initAction() {
+        binding.apply {
+            ivRegisterBack.setOnClickListener {
+                requireActivity().supportFragmentManager.popBackStack()
+            }
+        }
     }
 
     override fun initProcess() {
