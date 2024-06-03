@@ -70,6 +70,9 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.logging.interceptor)
 
+    // ViewPager
+    implementation(libs.androidx.viewpager2)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

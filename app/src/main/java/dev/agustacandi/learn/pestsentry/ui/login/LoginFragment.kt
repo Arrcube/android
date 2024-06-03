@@ -23,6 +23,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     override fun initAction() {
         binding.apply {
+            loginButton.setOnClickListener {
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            }
             btnToRegister.setOnClickListener {
                 findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             }
