@@ -8,6 +8,12 @@
         android:title="@string/menu_home" />
 
     <item
+        android:id="@+id/analyzeFragment"
+        android:icon="@drawable/baseline_pest_control_rodent_24"
+        android:iconTint="@color/green"
+        android:title="@string/menu_analyze" />
+
+    <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/baseline_person_24"
         android:iconTint="@color/green"
