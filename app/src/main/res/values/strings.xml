@@ -40,4 +40,5 @@
     <string name="new_password">New Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="menu_analyze">Analyze</string>
+    <string name="boarding_indicators">Boarding indicators</string>
 </resources>
