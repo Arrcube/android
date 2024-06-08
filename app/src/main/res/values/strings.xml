@@ -41,4 +41,9 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="menu_analyze">Analyze</string>
     <string name="boarding_indicators">Boarding indicators</string>
+    <string name="plant_image">Plant image</string>
+    <string name="analyze_header_text">Choose image from gallery or take a picture from camera to start analyze your plant.</string>
+    <string name="analyze_plant_disease">Analyze Plant Disease</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 </resources>
