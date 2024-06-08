@@ -57,7 +57,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/headline" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="@string/boarding_indicators"
+            android:src="@drawable/third_boarding_indicators"
+            app:layout_constraintBottom_toTopOf="@id/get_started_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <Button
+            style="@style/SemiBoldFont"
             android:id="@+id/get_started_button"
             android:layout_width="match_parent"
             android:layout_height="54dp"
