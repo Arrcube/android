@@ -23,13 +23,91 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/analyze_header_text"
+                style="@style/RegularFont"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/analyze_header_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/plant_image"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/plant_image"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/analyze_header_text" />
+
+            <Button
+                android:id="@+id/camera_button"
+                style="@style/SemiBoldFont"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:background="@drawable/corner_border"
+                android:text="@string/camera"
+                android:textSize="16sp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toStartOf="@id/gallery_button"
+                app:layout_constraintStart_toStartOf="@id/plant_image"
+                app:layout_constraintTop_toBottomOf="@id/plant_image" />
+
+            <Button
+                android:id="@+id/gallery_button"
+                style="@style/SemiBoldFont"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:background="@drawable/corner_border"
+                android:text="@string/gallery"
+                android:layout_marginTop="12dp"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/camera_button"
+                app:layout_constraintEnd_toEndOf="@id/plant_image"
+                app:layout_constraintTop_toBottomOf="@id/plant_image" />
+
+            <Button
+                android:id="@+id/analyze_plant_pest_button"
+                style="@style/SemiBoldFont"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/corner_border"
+                android:text="@string/analyze_plant_disease"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/analyze_plant_disease_button"
+                app:layout_constraintEnd_toEndOf="@id/plant_image"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/analyze_plant_disease_button"
+                style="@style/SemiBoldFont"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/corner_border"
+                android:text="@string/analyze_plant_disease"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
