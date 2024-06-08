@@ -4,4 +4,25 @@
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/green</item>
     </style>
+
+    <style name="LightFont">
+        <item name="android:fontFamily">@font/manrope_light</item>
+    </style>
+
+    <style name="RegularFont">
+        <item name="android:fontFamily">@font/manrope</item>
+    </style>
+
+    <style name="SemiBoldFont">
+        <item name="android:fontFamily">@font/manrope_semibold</item>
+    </style>
+
+    <style name="ExtraBoldFont">
+        <item name="android:fontFamily">@font/manrope_extrabold</item>
+    </style>
+
+    <style name="ToolBarFont" parent="Widget.Material3.Toolbar">
+        <item name="fontFamily">@font/manrope_extrabold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>
