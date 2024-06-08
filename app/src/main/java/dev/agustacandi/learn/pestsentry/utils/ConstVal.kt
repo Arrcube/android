@@ -11,7 +11,7 @@ object ConstVal {
     val koinModules = listOf(networkModule, preferenceModule)
 
     // Navigation Bar Destination
-    val navBarDestination = listOf(R.id.homeFragment, R.id.profileFragment)
+    val navBarDestination = listOf(R.id.homeFragment, R.id.analyzeFragment, R.id.profileFragment)
 
     // Shared Preferences
     const val PREFS_NAME = "pestsentry.pref"
