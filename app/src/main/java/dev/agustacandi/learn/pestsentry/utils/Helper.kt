@@ -36,7 +36,6 @@ object Helper {
         FancyToast.makeText(context, message, FancyToast.LENGTH_LONG, FancyToast.ERROR, false)
             .show()
     }
-
     fun getImageUri(context: Context): Uri {
         var uri: Uri? = null
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -63,4 +62,5 @@ object Helper {
             imageFile
         )
     }
+
 }

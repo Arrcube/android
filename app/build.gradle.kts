@@ -20,6 +20,7 @@ android {
         buildConfigField("String", "PREDICT_PEST_BASE_URL", "\"${project.findProperty("PREDICT_PEST_BASE_URL")}\"")
         buildConfigField("String", "NEWS_BASE_URL", "\"${project.findProperty("NEWS_BASE_URL")}\"")
         buildConfigField("String", "NEWS_API_KEY", "\"${project.findProperty("NEWS_API_KEY")}\"")
+        buildConfigField("String", "AUTH_BASE_URL", "\"${project.findProperty("AUTH_BASE_URL")}\"")
     }
 
     buildTypes {

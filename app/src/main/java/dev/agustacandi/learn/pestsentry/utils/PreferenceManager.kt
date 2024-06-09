@@ -2,6 +2,7 @@ package dev.agustacandi.learn.pestsentry.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import dev.agustacandi.learn.pestsentry.data.auth.LoginResponse
 
 class PreferenceManager(context: Context) {
     private var prefs: SharedPreferences =
@@ -12,11 +13,11 @@ class PreferenceManager(context: Context) {
     val getName = prefs.getString(ConstVal.KEY_NAME, "")
     val getOnboardingScreen = prefs.getBoolean(ConstVal.KEY_ONBOARDING_SCREEN, false)
 
-//    fun setLoginPrefs(loginResult: LoginResult) {
+    fun setLoginPrefs(loginResult: LoginResponse) {
 //        editor.putString(ConstVal.KEY_NAME, loginResult.name)
-//        editor.putString(ConstVal.KEY_TOKEN, loginResult.token)
-//        editor.apply()
-//    }
+        editor.putString(ConstVal.KEY_TOKEN, loginResult.token)
+        editor.apply()
+    }
 
     fun setOnboardingScreenPreference() {
         editor.putBoolean(ConstVal.KEY_ONBOARDING_SCREEN, true)

@@ -1,6 +1,7 @@
 package dev.agustacandi.learn.pestsentry.di
 
-import de.hdodenhof.circleimageview.BuildConfig
+import dev.agustacandi.learn.pestsentry.BuildConfig
+import dev.agustacandi.learn.pestsentry.data.auth.AuthService
 import dev.agustacandi.learn.pestsentry.data.lib.HeaderInterceptor
 import dev.agustacandi.learn.pestsentry.utils.ConstVal
 import dev.agustacandi.learn.pestsentry.utils.PreferenceManager
@@ -26,11 +27,12 @@ val networkModule = module {
     }
     single {
         Retrofit.Builder()
-            .baseUrl(ConstVal.BASE_URL)
+            .baseUrl(BuildConfig.AUTH_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()
     }
+//    single { provideAuthService(get()) }
 }
 
 private fun getHeaderInterceptor(preferenceManager: PreferenceManager): Interceptor {
@@ -39,3 +41,5 @@ private fun getHeaderInterceptor(preferenceManager: PreferenceManager): Intercep
 
     return HeaderInterceptor(headers, preferenceManager)
 }
+
+//fun provideAuthService(retrofit: Retrofit): AuthService = retrofit.create(AuthService::class.java)

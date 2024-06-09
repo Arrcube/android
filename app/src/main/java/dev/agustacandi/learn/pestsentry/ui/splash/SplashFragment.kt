@@ -37,7 +37,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     override fun initProcess() {
         lifecycleScope.launch {
             delay(ConstVal.SPLASH_SCREEN_DURATION.seconds)
-            if (preferenceManager.getOnboardingScreen) {
+            if (preferenceManager.getToken != "") {
+              findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+            } else if (preferenceManager.getOnboardingScreen) {
                 findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
             } else {
                 findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)

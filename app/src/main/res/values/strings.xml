@@ -49,4 +49,6 @@
     <string name="location_denied">Permission denied. Unable to access location.</string>
     <string name="you_have_not_selected_an_image">You haven\'t selected an image</string>
     <string name="analyze_plant_pests">Analyze Plant Pests</string>
+    <string name="empty_field_error">Field can\'t be empty</string>
+
 </resources>

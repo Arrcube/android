@@ -49,6 +49,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                     positiveButtonText = getString(R.string.yes),
                     negativeButtonText = getString(R.string.no),
                     onPositiveClick = {
+                        val prefs = prefe
                         findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
                     }
                 )

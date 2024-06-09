@@ -15,7 +15,7 @@
         android:layout_marginTop="33dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        android:src="@drawable/baseline_account_circle_24" />
 
     <TextView
         android:id="@+id/textView6"
