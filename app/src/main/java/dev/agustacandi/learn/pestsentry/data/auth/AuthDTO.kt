@@ -21,9 +21,31 @@ data class LoginResponse(
 
 // Register Data Class
 data class RegisterRequest(
-    val name: String,
+    val username: String,
     val email: String,
     val password: String
 )
 
-class RegisterResponse : BaseResponse()
+data class RegisterResponse(
+    @field:SerializedName("status")
+    val status: String,
+    @field:SerializedName("message")
+    val message: String,
+    @field:SerializedName("data")
+    val data: Data
+) : BaseResponse()
+
+data class Data(
+
+    @field:SerializedName("createdAt")
+    val createdAt: String,
+
+    @field:SerializedName("id")
+    val id: String,
+
+    @field:SerializedName("email")
+    val email: String,
+
+    @field:SerializedName("username")
+    val username: String
+)

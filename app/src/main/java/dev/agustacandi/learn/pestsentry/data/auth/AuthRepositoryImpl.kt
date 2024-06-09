@@ -33,12 +33,12 @@ class AuthRepositoryImpl(
     override fun register(dto: RegisterRequest): Flow<ApiResponse<RegisterResponse>> = flow {
         try {
             emit(ApiResponse.Loading)
-//            val response = authService.register(dto.name, dto.email, dto.password)
-//            if (response.error) {
-//                emit(ApiResponse.Error(response.message))
-//            } else {
-//                emit(ApiResponse.Success(response))
-//            }
+            val response = authService.register(RegisterRequest(dto.username, dto.email, dto.password))
+            if (response.error) {
+                emit(ApiResponse.Error(response.message))
+            } else {
+                emit(ApiResponse.Success(response))
+            }
         } catch (e: Exception) {
             e.printStackTrace()
             emit(ApiResponse.Error(e.message.toString()))

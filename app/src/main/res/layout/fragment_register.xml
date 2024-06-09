@@ -47,12 +47,23 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="210dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/register_illustration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <ProgressBar
+        android:id="@+id/register_loadingbar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="0dp"
@@ -69,7 +80,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/editTextText3"
+                android:id="@+id/et_regis_username"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="34dp"
@@ -78,9 +89,9 @@
                 android:background="@drawable/corner_border"
                 android:ems="10"
                 android:fontFamily="@font/manrope"
-                android:hint="Full Name"
+                android:hint="Username"
                 android:inputType="text"
-                android:paddingVertical="13dp"
+                android:paddingVertical="16dp"
                 android:paddingStart="16dp"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -88,26 +99,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editTextText4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="34dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="34dp"
-                android:background="@drawable/corner_border"
-                android:ems="10"
-                android:fontFamily="@font/manrope"
-                android:hint="Username"
-                android:inputType="text"
-                android:paddingVertical="13dp"
-                android:paddingStart="16dp"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText3" />
-
-            <EditText
-                android:id="@+id/editTextText5"
+                android:id="@+id/et_regis_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="34dp"
@@ -118,15 +110,15 @@
                 android:fontFamily="@font/manrope"
                 android:hint="Email"
                 android:inputType="text"
-                android:paddingVertical="13dp"
+                android:paddingVertical="16dp"
                 android:paddingStart="16dp"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+                app:layout_constraintTop_toBottomOf="@+id/et_regis_username" />
 
             <EditText
-                android:id="@+id/editTextText6"
+                android:id="@+id/et_regis_password"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="34dp"
@@ -136,16 +128,16 @@
                 android:ems="10"
                 android:fontFamily="@font/manrope"
                 android:hint="Password"
-                android:inputType="text"
-                android:paddingVertical="13dp"
+                android:inputType="text|textPassword"
+                android:paddingVertical="16dp"
                 android:paddingStart="16dp"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText5" />
+                app:layout_constraintTop_toBottomOf="@+id/et_regis_email" />
 
             <EditText
-                android:id="@+id/editTextText7"
+                android:id="@+id/et_regis_confirm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="34dp"
@@ -155,16 +147,16 @@
                 android:ems="10"
                 android:fontFamily="@font/manrope"
                 android:hint="Confirm Password"
-                android:inputType="text"
-                android:paddingVertical="13dp"
+                android:inputType="text|textPassword"
+                android:paddingVertical="16dp"
                 android:paddingStart="16dp"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText6" />
+                app:layout_constraintTop_toBottomOf="@+id/et_regis_password" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btn_register"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="34dp"
@@ -177,7 +169,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText7" />
+                app:layout_constraintTop_toBottomOf="@+id/et_regis_confirm" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

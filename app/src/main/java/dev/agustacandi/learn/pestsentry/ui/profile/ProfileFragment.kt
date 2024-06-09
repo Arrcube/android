@@ -10,8 +10,10 @@ import dev.agustacandi.learn.pestsentry.R
 import dev.agustacandi.learn.pestsentry.base.BaseFragment
 import dev.agustacandi.learn.pestsentry.databinding.FragmentProfileBinding
 import dev.agustacandi.learn.pestsentry.utils.ext.showConfirmDialog
+import org.koin.android.ext.android.inject
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
+    private val profileViewModel : ProfileViewModel by inject()
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,7 +51,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                     positiveButtonText = getString(R.string.yes),
                     negativeButtonText = getString(R.string.no),
                     onPositiveClick = {
-                        val prefs = prefe
+                        profileViewModel.logout()
                         findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
                     }
                 )
