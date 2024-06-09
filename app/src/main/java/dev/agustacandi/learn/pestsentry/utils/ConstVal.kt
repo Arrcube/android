@@ -2,6 +2,7 @@ package dev.agustacandi.learn.pestsentry.utils
 
 import dev.agustacandi.learn.pestsentry.R
 import dev.agustacandi.learn.pestsentry.di.authNetworkModule
+import dev.agustacandi.learn.pestsentry.di.feature.newsModule
 import dev.agustacandi.learn.pestsentry.di.feature.predictModule
 import dev.agustacandi.learn.pestsentry.di.feature.authModule
 import dev.agustacandi.learn.pestsentry.di.networkModule
@@ -13,7 +14,7 @@ import dev.agustacandi.learn.pestsentry.di.viewModelModule
 object ConstVal {
 
     // Koin Modules
-    val koinModules = listOf(authNetworkModule, predictNetworkModule, newsNetworkModule, preferenceModule, viewModelModule, predictModule,authModule)
+    val koinModules = listOf(authNetworkModule, networkModule, predictNetworkModule, newsNetworkModule, newsModule, preferenceModule, viewModelModule, predictModule, authModule)
 
     // Navigation Bar Destination
     val navBarDestination = listOf(R.id.homeFragment, R.id.analyzeFragment, R.id.profileFragment)
