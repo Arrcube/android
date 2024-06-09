@@ -46,4 +46,7 @@
     <string name="analyze_plant_disease">Analyze Plant Disease</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
+    <string name="location_denied">Permission denied. Unable to access location.</string>
+    <string name="you_have_not_selected_an_image">You haven\'t selected an image</string>
+    <string name="analyze_plant_pests">Analyze Plant Pests</string>
 </resources>

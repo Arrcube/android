@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -15,6 +16,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "PREDICT_PEST_BASE_URL", "\"${project.findProperty("PREDICT_PEST_BASE_URL")}\"")
+        buildConfigField("String", "NEWS_BASE_URL", "\"${project.findProperty("NEWS_BASE_URL")}\"")
+        buildConfigField("String", "NEWS_API_KEY", "\"${project.findProperty("NEWS_API_KEY")}\"")
     }
 
     buildTypes {
@@ -35,6 +40,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -72,6 +78,12 @@ dependencies {
 
     // ViewPager
     implementation(libs.androidx.viewpager2)
+
+    // UCrop
+    implementation(libs.ucrop)
+
+    // Fancy Toast
+    implementation(libs.fancytoast)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

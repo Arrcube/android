@@ -112,8 +112,24 @@
         android:id="@+id/analyzeFragment"
         android:name="dev.agustacandi.learn.pestsentry.ui.analyze.AnalyzeFragment"
         android:label="fragment_analyze"
-        tools:layout="@layout/fragment_analyze" />
+        tools:layout="@layout/fragment_analyze" >
+        <action
+            android:id="@+id/action_analyzeFragment_to_resultFragment"
+            app:destination="@id/resultFragment"/>
+    </fragment>
     <action
         android:id="@+id/action_global_homeFragment"
         app:destination="@id/homeFragment" />
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="dev.agustacandi.learn.pestsentry.ui.analyze.result.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result">
+        <argument
+            android:name="pestName"
+            app:argType="string" />
+        <argument
+            android:name="pestImage"
+            app:argType="string" />
+    </fragment>
 </navigation>
