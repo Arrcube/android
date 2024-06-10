@@ -56,24 +56,26 @@
                         app:layout_constraintBottom_toBottomOf="parent" />
 
                     <TextView
+                        android:id="@+id/tv_profile_name"
                         style="@style/SemiBoldFont"
-                        android:textSize="18sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="@tools:sample/first_names"
                         android:layout_marginStart="16dp"
+                        android:textSize="18sp"
                         app:layout_constraintStart_toEndOf="@id/avatar"
-                        app:layout_constraintTop_toTopOf="@id/avatar" />
+                        app:layout_constraintTop_toTopOf="@id/avatar"
+                        tools:text="@tools:sample/first_names" />
 
                     <TextView
+                        android:id="@+id/tv_profile_email"
                         style="@style/RegularFont"
-                        android:textColor="@color/grey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="@tools:sample/lorem"
                         android:layout_marginStart="16dp"
+                        android:textColor="@color/grey"
+                        app:layout_constraintBottom_toBottomOf="@id/avatar"
                         app:layout_constraintStart_toEndOf="@id/avatar"
-                        app:layout_constraintBottom_toBottomOf="@id/avatar" />
+                        tools:text="@tools:sample/lorem" />
 
                     <com.google.android.material.divider.MaterialDivider
                         android:layout_width="match_parent"

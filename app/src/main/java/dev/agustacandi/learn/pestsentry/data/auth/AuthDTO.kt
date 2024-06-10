@@ -15,10 +15,22 @@ data class LoginResponse(
     @field:SerializedName("message")
     val message: String,
     @field:SerializedName("token")
-    val token: String
+    val token: String,
+    @field:SerializedName("user")
+    val user: User
 ) : BaseResponse()
 
+data class User(
 
+    @field:SerializedName("id")
+    val id: String,
+
+    @field:SerializedName("email")
+    val email: String,
+
+    @field:SerializedName("username")
+    val username: String
+)
 // Register Data Class
 data class RegisterRequest(
     val username: String,

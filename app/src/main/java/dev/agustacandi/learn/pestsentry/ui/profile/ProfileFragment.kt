@@ -9,11 +9,13 @@ import androidx.navigation.fragment.findNavController
 import dev.agustacandi.learn.pestsentry.R
 import dev.agustacandi.learn.pestsentry.base.BaseFragment
 import dev.agustacandi.learn.pestsentry.databinding.FragmentProfileBinding
+import dev.agustacandi.learn.pestsentry.utils.PreferenceManager
 import dev.agustacandi.learn.pestsentry.utils.ext.showConfirmDialog
 import org.koin.android.ext.android.inject
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     private val profileViewModel : ProfileViewModel by inject()
+    private val preferenceManager : PreferenceManager by inject()
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,6 +26,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun initUI() {
+        binding.apply {
+            tvProfileName.text = preferenceManager.getName
+            tvProfileEmail.text = preferenceManager.getEmail
+        }
     }
 
     override fun initAction() {

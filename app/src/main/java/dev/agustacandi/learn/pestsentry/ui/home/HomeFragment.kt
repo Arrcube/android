@@ -7,11 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dev.agustacandi.learn.pestsentry.base.BaseFragment
 import dev.agustacandi.learn.pestsentry.data.lib.ApiResponse
 import dev.agustacandi.learn.pestsentry.databinding.FragmentHomeBinding
+import dev.agustacandi.learn.pestsentry.utils.PreferenceManager
 import org.koin.android.ext.android.inject
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val homeViewModel: HomeViewModel by inject()
+    private val preferenceManager : PreferenceManager by inject()
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -23,6 +25,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun initUI() {
+        binding.apply {
+            tvHomeUsername.text = preferenceManager.getName
+        }
     }
 
     override fun initAction() {

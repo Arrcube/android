@@ -23,6 +23,7 @@ object ConstVal {
     const val PREFS_NAME = "pestsentry.pref"
     const val KEY_TOKEN = "key.token"
     const val KEY_NAME = "key.name"
+    const val KEY_EMAIL = "key.email"
     const val KEY_ONBOARDING_SCREEN = "key.onboarding_screen"
 
     const val SPLASH_SCREEN_DURATION = 3
