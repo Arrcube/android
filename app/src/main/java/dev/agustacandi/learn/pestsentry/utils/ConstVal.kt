@@ -5,16 +5,20 @@ import dev.agustacandi.learn.pestsentry.di.authNetworkModule
 import dev.agustacandi.learn.pestsentry.di.feature.newsModule
 import dev.agustacandi.learn.pestsentry.di.feature.predictModule
 import dev.agustacandi.learn.pestsentry.di.feature.authModule
+import dev.agustacandi.learn.pestsentry.di.feature.userModule
 import dev.agustacandi.learn.pestsentry.di.networkModule
 import dev.agustacandi.learn.pestsentry.di.newsNetworkModule
 import dev.agustacandi.learn.pestsentry.di.predictNetworkModule
 import dev.agustacandi.learn.pestsentry.di.preferenceModule
+import dev.agustacandi.learn.pestsentry.di.userNetworkModule
 import dev.agustacandi.learn.pestsentry.di.viewModelModule
 
 object ConstVal {
 
     // Koin Modules
-    val koinModules = listOf(authNetworkModule, networkModule, predictNetworkModule, newsNetworkModule, newsModule, preferenceModule, viewModelModule, predictModule, authModule)
+    val koinModules = listOf(
+        userNetworkModule, authNetworkModule, networkModule, predictNetworkModule, newsNetworkModule, newsModule, preferenceModule, viewModelModule, predictModule, authModule,
+        userModule)
 
     // Navigation Bar Destination
     val navBarDestination = listOf(R.id.homeFragment, R.id.analyzeFragment, R.id.profileFragment)
@@ -24,6 +28,7 @@ object ConstVal {
     const val KEY_TOKEN = "key.token"
     const val KEY_NAME = "key.name"
     const val KEY_EMAIL = "key.email"
+    const val KEY_ID = "key.id"
     const val KEY_ONBOARDING_SCREEN = "key.onboarding_screen"
 
     const val SPLASH_SCREEN_DURATION = 3

@@ -5,6 +5,7 @@ import dev.agustacandi.learn.pestsentry.ui.analyze.AnalyzeViewModel
 import dev.agustacandi.learn.pestsentry.ui.login.LoginViewModel
 import dev.agustacandi.learn.pestsentry.ui.home.HomeViewModel
 import dev.agustacandi.learn.pestsentry.ui.profile.ProfileViewModel
+import dev.agustacandi.learn.pestsentry.ui.profile.password.PasswordViewModel
 import dev.agustacandi.learn.pestsentry.ui.register.RegisterViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -16,4 +17,5 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
     viewModel { RegisterViewModel(get()) }
+    viewModel { PasswordViewModel(get()) }
 }
