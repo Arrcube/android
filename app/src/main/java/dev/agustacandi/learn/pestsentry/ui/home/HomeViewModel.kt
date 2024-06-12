@@ -17,7 +17,7 @@ class HomeViewModel(private val newsRepository: NewsRepository) : ViewModel() {
 
     fun getNews() {
         viewModelScope.launch {
-            newsRepository.getNews().collect {
+            newsRepository.getNews(pageSize = 3).collect {
                 _articleResult.value = it
             }
         }

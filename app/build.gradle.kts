@@ -86,6 +86,9 @@ dependencies {
     // Fancy Toast
     implementation(libs.fancytoast)
 
+    // Facebook Shimmer
+    implementation(libs.shimmer)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

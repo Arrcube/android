@@ -16,7 +16,7 @@
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
             app:navigationIconTint="@color/black"
-            app:title="Detail Article"
+            app:title="@string/detail_article"
             app:titleCentered="true"
             app:titleTextAppearance="@style/ToolBarFont" />
 

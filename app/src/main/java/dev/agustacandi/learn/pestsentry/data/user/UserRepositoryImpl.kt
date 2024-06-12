@@ -16,7 +16,7 @@ class UserRepositoryImpl(
             emit(ApiResponse.Loading)
             //get user id from preference
             val id = preferenceManager.getId
-            val response = userService.change(id!!, newPassword)
+            val response = userService.change(id!!, ChangePasswordRequest(newPassword))
             emit(ApiResponse.Success(response))
         } catch (e: Exception) {
             e.printStackTrace()

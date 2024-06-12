@@ -13,6 +13,7 @@
     <string name="third_boarding_description">With the right knowledge, you can prevent pest infestations and increase your yields.</string>
     <string name="get_started">Get Started</string>
     <string name="profile_menu">Profile</string>
+    <string name="profile">Profile</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="edit_profile_icon">Edit profile icon</string>
     <string name="arrow_forward_icon">Arrow forward icon</string>
@@ -40,6 +41,7 @@
     <string name="new_password">New Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="menu_analyze">Analyze</string>
+    <string name="analyze">Analyze</string>
     <string name="boarding_indicators">Boarding indicators</string>
     <string name="plant_image">Plant image</string>
     <string name="analyze_header_text">Choose image from gallery or take a picture from camera to start analyze your plant.</string>
@@ -52,4 +54,18 @@
     <string name="empty_field_error">Field can\'t be empty</string>
     <string name="article_image">Article image</string>
     <string name="password_equal_confirm_password">Password and confirm password must match!</string>
+    <string name="article_title">Article Title</string>
+    <string name="article_description">article_description</string>
+    <string name="search_article">Search Article</string>
+    <string name="see_all">See all</string>
+    <string name="image_carousel">Image carousel</string>
+    <string name="retry">Retry</string>
+    <string name="history_menu">History</string>
+    <string name="related_articles">Related Articles</string>
+    <string name="token_expired">Token Expired</string>
+    <string name="token_expired_message">Please login again to continue using the app.</string>
+    <string name="delete_history">Delete history</string>
+    <string name="result">Result</string>
+    <string name="detail_article">Detail Article</string>
+    <string name="no_histories_found">No histories found</string>
 </resources>

@@ -2,6 +2,7 @@ package dev.agustacandi.learn.pestsentry.data.auth
 
 import dev.agustacandi.learn.pestsentry.data.lib.ApiResponse
 import dev.agustacandi.learn.pestsentry.utils.ConstVal
+import dev.agustacandi.learn.pestsentry.utils.Helper
 import dev.agustacandi.learn.pestsentry.utils.PreferenceManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -21,7 +22,7 @@ class AuthRepositoryImpl(
             } else {
                 val loginResult = response
                 preferenceManager.setLoginPrefs(loginResult)
-                reloadKoinModules()
+                Helper.reloadKoinModules()
                 emit(ApiResponse.Success(response))
             }
         } catch (e: Exception) {
@@ -48,16 +49,11 @@ class AuthRepositoryImpl(
     override fun logout(): Boolean {
         return try {
             preferenceManager.clearAllPreferences()
-            reloadKoinModules()
+            Helper.reloadKoinModules()
             true
         } catch (e: Exception) {
             e.printStackTrace()
             false
         }
-    }
-
-    private fun reloadKoinModules() {
-        unloadKoinModules(ConstVal.koinModules)
-        loadKoinModules(ConstVal.koinModules)
     }
 }

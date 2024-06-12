@@ -11,8 +11,8 @@ import dev.agustacandi.learn.pestsentry.data.predict.repository.PredictRepositor
 import kotlinx.coroutines.launch
 
 class AnalyzeViewModel(private val predictRepository: PredictRepository) : ViewModel() {
-    private val _analyzeImageResult = MutableLiveData<ApiResponse<PredictResponse>>()
-    val analyzeImageResult: LiveData<ApiResponse<PredictResponse>> by lazy { _analyzeImageResult }
+    private val _analyzeImageResult = MutableLiveData<ApiResponse<PredictResponse>?>()
+    val analyzeImageResult: LiveData<ApiResponse<PredictResponse>?> by lazy { _analyzeImageResult }
 
     fun predictPest(imageUri: Uri) {
         viewModelScope.launch {
@@ -20,5 +20,9 @@ class AnalyzeViewModel(private val predictRepository: PredictRepository) : ViewM
                 _analyzeImageResult.value = it
             }
         }
+    }
+
+    fun setToNull() {
+        _analyzeImageResult.value = null
     }
 }

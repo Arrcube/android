@@ -3,6 +3,7 @@ package dev.agustacandi.learn.pestsentry.ui.article.detail
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.navigation.fragment.findNavController
@@ -37,14 +38,15 @@ class DetailArticleFragment : BaseFragment<FragmentDetailArticleBinding>() {
     }
 
     override fun initProcess() {
-        binding.webView.apply {
-            settings.javaScriptEnabled = true
-            webViewClient = object : WebViewClient() {
-                override fun onPageFinished(view: WebView?, url: String?) {
+        val webView = binding.webView
+        webView.loadUrl(articleUrl!!)
+        webView.settings.javaScriptEnabled = true
+        webView.webViewClient = object : WebViewClient() {
+            override fun onPageFinished(view: WebView?, url: String?) {
+                if (isAdded) {
                     binding.progressCircular.gone()
                 }
             }
-            loadUrl(articleUrl!!)
         }
     }
 

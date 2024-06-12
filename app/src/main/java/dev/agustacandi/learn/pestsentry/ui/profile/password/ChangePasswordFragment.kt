@@ -10,11 +10,14 @@ import dev.agustacandi.learn.pestsentry.base.BaseFragment
 import dev.agustacandi.learn.pestsentry.data.lib.ApiResponse
 import dev.agustacandi.learn.pestsentry.databinding.FragmentChangePasswordBinding
 import dev.agustacandi.learn.pestsentry.utils.Helper
+import dev.agustacandi.learn.pestsentry.utils.PreferenceManager
 import dev.agustacandi.learn.pestsentry.utils.ext.gone
 import org.koin.android.ext.android.inject
 
 class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
+
     private val passwordViewModel : PasswordViewModel by inject()
+
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,7 +49,7 @@ class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
                 }
                 if (newPassword.isNotEmpty() && confirm.isNotEmpty() && newPassword == confirm){
                     passwordViewModel.change(newPassword)
-                    requireActivity().supportFragmentManager.popBackStack()
+                    findNavController().popBackStack()
                 }
             }
         }

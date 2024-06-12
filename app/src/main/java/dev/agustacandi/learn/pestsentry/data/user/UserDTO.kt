@@ -9,3 +9,7 @@ data class ChangeResponse(
     @field:SerializedName("message")
     val message: String
 )
+
+data class ChangePasswordRequest(
+    val newPassword: String,
+)

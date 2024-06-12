@@ -22,7 +22,7 @@ class HeaderInterceptor(
 
     private fun mapRequestHeaders() {
         val token = preferenceManager.getToken
-        requestHeaders["Authorization"] = "Bearer $token"
+        requestHeaders["Authorization"] = "$token"
     }
 
     private fun mapHeaders(chain: Interceptor.Chain): Request {

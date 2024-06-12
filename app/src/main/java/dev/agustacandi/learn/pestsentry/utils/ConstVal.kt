@@ -1,23 +1,19 @@
 package dev.agustacandi.learn.pestsentry.utils
 
 import dev.agustacandi.learn.pestsentry.R
-import dev.agustacandi.learn.pestsentry.di.authNetworkModule
 import dev.agustacandi.learn.pestsentry.di.feature.newsModule
 import dev.agustacandi.learn.pestsentry.di.feature.predictModule
 import dev.agustacandi.learn.pestsentry.di.feature.authModule
+import dev.agustacandi.learn.pestsentry.di.feature.historyModule
 import dev.agustacandi.learn.pestsentry.di.feature.userModule
 import dev.agustacandi.learn.pestsentry.di.networkModule
-import dev.agustacandi.learn.pestsentry.di.newsNetworkModule
-import dev.agustacandi.learn.pestsentry.di.predictNetworkModule
 import dev.agustacandi.learn.pestsentry.di.preferenceModule
-import dev.agustacandi.learn.pestsentry.di.userNetworkModule
 import dev.agustacandi.learn.pestsentry.di.viewModelModule
 
 object ConstVal {
 
     // Koin Modules
-    val koinModules = listOf(
-        userNetworkModule, authNetworkModule, networkModule, predictNetworkModule, newsNetworkModule, newsModule, preferenceModule, viewModelModule, predictModule, authModule,
+    val koinModules = listOf(networkModule, newsModule, historyModule, preferenceModule, viewModelModule, predictModule, authModule,
         userModule)
 
     // Navigation Bar Destination

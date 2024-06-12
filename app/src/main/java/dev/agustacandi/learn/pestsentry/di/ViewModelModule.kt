@@ -2,6 +2,9 @@ package dev.agustacandi.learn.pestsentry.di
 
 
 import dev.agustacandi.learn.pestsentry.ui.analyze.AnalyzeViewModel
+import dev.agustacandi.learn.pestsentry.ui.analyze.history.HistoryViewModel
+import dev.agustacandi.learn.pestsentry.ui.analyze.result.ResultViewModel
+import dev.agustacandi.learn.pestsentry.ui.article.ArticleViewModel
 import dev.agustacandi.learn.pestsentry.ui.login.LoginViewModel
 import dev.agustacandi.learn.pestsentry.ui.home.HomeViewModel
 import dev.agustacandi.learn.pestsentry.ui.profile.ProfileViewModel
@@ -18,4 +21,7 @@ val viewModelModule = module {
     viewModel { ProfileViewModel(get()) }
     viewModel { RegisterViewModel(get()) }
     viewModel { PasswordViewModel(get()) }
+    viewModel { ArticleViewModel(get()) }
+    viewModel { ResultViewModel(get()) }
+    viewModel { HistoryViewModel(get()) }
 }

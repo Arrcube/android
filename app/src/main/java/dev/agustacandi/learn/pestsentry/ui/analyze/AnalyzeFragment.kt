@@ -16,9 +16,11 @@ import dev.agustacandi.learn.pestsentry.base.BaseFragment
 import dev.agustacandi.learn.pestsentry.data.lib.ApiResponse
 import dev.agustacandi.learn.pestsentry.databinding.FragmentAnalyzeBinding
 import dev.agustacandi.learn.pestsentry.utils.Helper
+import dev.agustacandi.learn.pestsentry.utils.PreferenceManager
 import dev.agustacandi.learn.pestsentry.utils.ext.gone
 import dev.agustacandi.learn.pestsentry.utils.ext.setDisable
 import dev.agustacandi.learn.pestsentry.utils.ext.setEnable
+import dev.agustacandi.learn.pestsentry.utils.ext.showSessionDialog
 import org.koin.android.ext.android.inject
 import java.io.File
 import java.util.Date
@@ -28,6 +30,7 @@ class AnalyzeFragment : BaseFragment<FragmentAnalyzeBinding>() {
     private var currentImageUri: Uri? = null
 
     private val analyzeViewModel: AnalyzeViewModel by inject()
+    private val preferenceManager: PreferenceManager by inject()
 
     private val launcherGallery = registerForActivityResult(
         ActivityResultContracts.PickVisualMedia()
@@ -42,14 +45,6 @@ class AnalyzeFragment : BaseFragment<FragmentAnalyzeBinding>() {
     ) { isSuccess ->
         if (isSuccess) {
             launchUCrop(currentImageUri!!)
-        }
-    }
-
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        if (!isGranted) {
-            Helper.showErrorToast(requireActivity(), getString(R.string.location_denied))
         }
     }
 
@@ -75,12 +70,16 @@ class AnalyzeFragment : BaseFragment<FragmentAnalyzeBinding>() {
 
     override fun initUI() {
         binding.plantImage.load(R.drawable.img_placeholder) {
-            transformations(RoundedCornersTransformation(16f, 16f, 16f, 16f))
+            transformations(RoundedCornersTransformation(16f))
         }
     }
 
     override fun initAction() {
         binding.apply {
+            appbar.setNavigationOnClickListener {
+                findNavController().navigate(R.id.action_analyzeFragment_to_historyFragment)
+            }
+
             cameraButton.setOnClickListener {
                 currentImageUri = Helper.getImageUri(requireActivity())
                 launcherCamera.launch(currentImageUri)
@@ -96,7 +95,10 @@ class AnalyzeFragment : BaseFragment<FragmentAnalyzeBinding>() {
                         analyzeViewModel.predictPest(currentImageUri!!)
                     }
                 } else {
-                    Helper.showErrorToast(requireActivity(), getString(R.string.you_have_not_selected_an_image))
+                    Helper.showErrorToast(
+                        requireActivity(),
+                        getString(R.string.you_have_not_selected_an_image)
+                    )
                 }
             }
 
@@ -115,10 +117,7 @@ class AnalyzeFragment : BaseFragment<FragmentAnalyzeBinding>() {
                 binding.apply {
                     when (result) {
                         is ApiResponse.Loading -> {
-                            cameraButton.setDisable()
-                            galleryButton.setDisable()
-                            analyzePlantPestButton.setDisable()
-                            analyzePlantDiseaseButton.setDisable()
+                            disableButton()
                             progressIndicator.show()
                         }
 
@@ -130,19 +129,31 @@ class AnalyzeFragment : BaseFragment<FragmentAnalyzeBinding>() {
 
                             val navigateToResultFragment =
                                 AnalyzeFragmentDirections.actionAnalyzeFragmentToResultFragment(
-                                    capitalizedString, currentImageUri.toString()
+                                    capitalizedString, currentImageUri.toString(), getString(R.string.analyze)
                                 )
 
                             findNavController().navigate(navigateToResultFragment)
+                            analyzeViewModel.setToNull()
                         }
 
                         is ApiResponse.Error -> {
+                            if (result.errorMessage.contains("401")) {
+                                showSessionDialog(
+                                    onClick = {
+                                        try {
+                                            preferenceManager.clearAllPreferences()
+                                            Helper.reloadKoinModules()
+                                            findNavController().navigate(R.id.action_analyzeFragment_to_loginFragment)
+                                        } catch (e: Exception) {
+                                            Helper.showErrorToast(requireActivity(), e.message.toString())
+                                        }
+                                    }
+                                )
+                            }
                             Helper.showErrorToast(requireActivity(), result.errorMessage)
-                            cameraButton.setEnable()
-                            galleryButton.setEnable()
-                            analyzePlantPestButton.setEnable()
-                            analyzePlantDiseaseButton.setEnable()
+                            enableButton()
                             progressIndicator.gone()
+                            analyzeViewModel.setToNull()
                         }
 
                         else -> progressIndicator.gone()
@@ -170,6 +181,24 @@ class AnalyzeFragment : BaseFragment<FragmentAnalyzeBinding>() {
             binding.plantImage.load(it) {
                 transformations(RoundedCornersTransformation(16f, 16f, 16f, 16f))
             }
+        }
+    }
+
+    private fun enableButton() {
+        binding.apply {
+            cameraButton.setEnable()
+            galleryButton.setEnable()
+            analyzePlantPestButton.setEnable()
+            analyzePlantDiseaseButton.setEnable()
+        }
+    }
+
+    private fun disableButton() {
+        binding.apply {
+            cameraButton.setDisable()
+            galleryButton.setDisable()
+            analyzePlantPestButton.setDisable()
+            analyzePlantDiseaseButton.setDisable()
         }
     }
 

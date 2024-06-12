@@ -1,60 +1,89 @@
 package dev.agustacandi.learn.pestsentry.ui.article
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import dev.agustacandi.learn.pestsentry.R
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import dev.agustacandi.learn.pestsentry.base.BaseFragment
+import dev.agustacandi.learn.pestsentry.data.lib.ApiResponse
+import dev.agustacandi.learn.pestsentry.databinding.FragmentArticleBinding
+import dev.agustacandi.learn.pestsentry.ui.home.ArticleAdapter
+import dev.agustacandi.learn.pestsentry.utils.Helper
+import dev.agustacandi.learn.pestsentry.utils.ext.gone
+import dev.agustacandi.learn.pestsentry.utils.ext.show
+import org.koin.android.ext.android.inject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class ArticleFragment : BaseFragment<FragmentArticleBinding>() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ArticleFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ArticleFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val articleViewModel: ArticleViewModel by inject()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): FragmentArticleBinding = FragmentArticleBinding.inflate(inflater, container, false)
+
+    override fun initIntent() {
+    }
+
+    override fun initUI() {
+    }
+
+    override fun initAction() {
+        binding.apply {
+            appbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+
+            searchView.editText.setOnEditorActionListener { _, _, _ ->
+                val usernameQuery =
+                    if (searchView.text.isEmpty()) "Pest" else searchView.text.toString()
+                searchView.hide()
+                searchBar.setText(searchView.text)
+                articleViewModel.getNews(usernameQuery)
+                false
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_article, container, false)
+    override fun initProcess() {
+        articleViewModel.getNews()
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ArticleFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ArticleFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun initObservers() {
+        articleViewModel.articleResult.observe(viewLifecycleOwner) { result ->
+            binding.apply {
+                when(result) {
+                    is ApiResponse.Loading -> {
+                        shimmerArticles.root.show()
+                        shimmerArticles.root.startShimmer()
+                        rvArticle.gone()
+                    }
+                    is ApiResponse.Success -> {
+                        shimmerArticles.root.gone()
+                        shimmerArticles.root.stopShimmer()
+                        rvArticle.show()
+
+                        val adapter = ArticleAdapter(
+                            navDirections = {
+                                ArticleFragmentDirections.actionArticleFragmentToDetailArticleFragment(it)
+                            }
+                        )
+                        val layoutManager = LinearLayoutManager(requireActivity())
+                        val article = result.data.articles.filter { it.urlToImage != null }
+                        adapter.submitList(article)
+                        rvArticle.layoutManager = layoutManager
+                        rvArticle.adapter = adapter
+                    }
+                    is ApiResponse.Error -> {
+                        shimmerArticles.root.gone()
+                        shimmerArticles.root.stopShimmer()
+                        Helper.showErrorToast(requireActivity(), result.errorMessage)
+                    }
                 }
             }
+        }
     }
+
 }

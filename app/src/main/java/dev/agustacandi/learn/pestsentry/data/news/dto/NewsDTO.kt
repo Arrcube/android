@@ -32,7 +32,7 @@ data class ArticlesItem(
     val author: String,
 
     @field:SerializedName("urlToImage")
-    val urlToImage: String,
+    val urlToImage: String? = null,
 
     @field:SerializedName("description")
     val description: String,

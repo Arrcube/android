@@ -9,6 +9,8 @@ interface NewsService {
     @GET("everything")
     suspend fun getNews(
         @Query("q") query: String = "Pest",
-        @Query("apiKey") apiKey: String = BuildConfig.NEWS_API_KEY
+        @Query("language") language: String = "en",
+        @Query("apiKey") apiKey: String = BuildConfig.NEWS_API_KEY,
+        @Query("pageSize") pageSize: Int = 15,
     ): NewsResponse
 }
