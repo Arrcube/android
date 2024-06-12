@@ -24,6 +24,16 @@ class PreferenceManager(context: Context) {
         editor.apply()
     }
 
+    fun updateEmailUsername(newEmail:String,newUsername : String){
+        editor.remove(ConstVal.KEY_EMAIL)
+        editor.remove(ConstVal.KEY_NAME)
+        editor.apply()
+        //replace with new one
+        editor.putString(ConstVal.KEY_NAME, newUsername)
+        editor.putString(ConstVal.KEY_EMAIL,newEmail)
+        editor.apply()
+    }
+
     fun setOnboardingScreenPreference() {
         editor.putBoolean(ConstVal.KEY_ONBOARDING_SCREEN, true)
         editor.apply()

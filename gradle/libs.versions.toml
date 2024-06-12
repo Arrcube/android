@@ -26,6 +26,7 @@ navigationUiKtx = "2.7.7"
 shimmer = "0.5.0"
 ucrop = "2.2.8"
 viewpager2 = "1.1.0"
+pagingCommonAndroid = "3.3.0"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
@@ -55,6 +56,7 @@ androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navi
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
 ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
+androidx-paging-common-android = { group = "androidx.paging", name = "paging-common-android", version.ref = "pagingCommonAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

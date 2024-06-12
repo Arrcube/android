@@ -9,4 +9,17 @@ interface UserService {
         @Path("id") id: String,
         @Body changePasswordRequest: ChangePasswordRequest
     ) : ChangeResponse
+
+    @PATCH("users/email/{id}")
+    suspend fun editEmail(
+        @Path("id") id: String,
+        @Body changeEmailRequest: ChangeEmailRequest
+    ) : ChangeResponse
+    @PATCH("users/username/{id}")
+    suspend fun editUsername(
+        @Path("id") id: String,
+        @Body changeUsernameRequest: ChangeUsernameRequest
+    ) : ChangeResponse
+
+
 }

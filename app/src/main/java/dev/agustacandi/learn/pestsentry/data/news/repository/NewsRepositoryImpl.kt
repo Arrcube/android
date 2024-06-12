@@ -1,14 +1,6 @@
 package dev.agustacandi.learn.pestsentry.data.news.repository
 
-import androidx.lifecycle.LiveData
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.PagingSourceFactory
-import androidx.paging.liveData
 import dev.agustacandi.learn.pestsentry.data.lib.ApiResponse
-import dev.agustacandi.learn.pestsentry.data.news.dto.ArticlesItem
-import dev.agustacandi.learn.pestsentry.data.news.dto.NewsResponse
 import dev.agustacandi.learn.pestsentry.data.news.service.NewsService
 import kotlinx.coroutines.flow.flow
 

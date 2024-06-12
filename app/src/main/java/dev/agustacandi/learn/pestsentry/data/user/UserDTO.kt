@@ -1,7 +1,6 @@
 package dev.agustacandi.learn.pestsentry.data.user
 
 import com.google.gson.annotations.SerializedName
-import dev.agustacandi.learn.pestsentry.data.lib.BaseResponse
 
 data class ChangeResponse(
     @field:SerializedName("status")
@@ -12,4 +11,12 @@ data class ChangeResponse(
 
 data class ChangePasswordRequest(
     val newPassword: String,
+)
+
+data class ChangeEmailRequest(
+    val newEmail: String,
+)
+
+data class ChangeUsernameRequest(
+    val newUsername: String,
 )

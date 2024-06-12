@@ -49,6 +49,7 @@ class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
                 }
                 if (newPassword.isNotEmpty() && confirm.isNotEmpty() && newPassword == confirm){
                     passwordViewModel.change(newPassword)
+                    Helper.showSuccessToast(requireActivity(),"Password successfully changed!")
                     findNavController().popBackStack()
                 }
             }

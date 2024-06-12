@@ -8,6 +8,7 @@ import dev.agustacandi.learn.pestsentry.ui.article.ArticleViewModel
 import dev.agustacandi.learn.pestsentry.ui.login.LoginViewModel
 import dev.agustacandi.learn.pestsentry.ui.home.HomeViewModel
 import dev.agustacandi.learn.pestsentry.ui.profile.ProfileViewModel
+import dev.agustacandi.learn.pestsentry.ui.profile.edit.EditProfileViewModel
 import dev.agustacandi.learn.pestsentry.ui.profile.password.PasswordViewModel
 import dev.agustacandi.learn.pestsentry.ui.register.RegisterViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -24,4 +25,5 @@ val viewModelModule = module {
     viewModel { ArticleViewModel(get()) }
     viewModel { ResultViewModel(get()) }
     viewModel { HistoryViewModel(get()) }
+    viewModel { EditProfileViewModel(get()) }
 }
