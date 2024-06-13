@@ -77,12 +77,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             HomeFragmentDirections.actionHomeFragmentToDetailArticleFragment(it)
                         })
                         val layoutManager = LinearLayoutManager(requireActivity())
-                        val article = result.data.articles.take(3)
+                        val article = result.data.articles.take(5)
                         adapter.submitList(article)
                         recyclerView.layoutManager = layoutManager
                         recyclerView.adapter = adapter
                     }
                     is ApiResponse.Error -> {
+                        if (result.errorMessage.contains("timeout")) {
+                            errorTimeoutLayout.root.show()
+                        }
                         shimmerArticles.root.gone()
                         shimmerArticles.root.stopShimmer()
                         Helper.showErrorToast(requireActivity(), result.errorMessage)

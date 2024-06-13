@@ -1,5 +1,6 @@
 package dev.agustacandi.learn.pestsentry.ui.analyze.history
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
@@ -13,10 +14,13 @@ import coil.transform.RoundedCornersTransformation
 import dev.agustacandi.learn.pestsentry.R
 import dev.agustacandi.learn.pestsentry.data.history.dto.HistoriesItem
 import dev.agustacandi.learn.pestsentry.databinding.ItemHistoryBinding
+import dev.agustacandi.learn.pestsentry.utils.Helper
+import dev.agustacandi.learn.pestsentry.utils.ext.formatDate
+import dev.agustacandi.learn.pestsentry.utils.ext.showConfirmDialog
 
-class HistoryAdapter : ListAdapter<HistoriesItem, HistoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class HistoryAdapter(private val fragment: HistoryFragment, private val historyViewModel: HistoryViewModel) : ListAdapter<HistoriesItem, HistoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-    class MyViewHolder(private val binding: ItemHistoryBinding) :
+    class MyViewHolder(private val binding: ItemHistoryBinding, private val fragment: HistoryFragment, private val historyViewModel: HistoryViewModel) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(history: HistoriesItem) {
             with(binding) {
@@ -25,7 +29,7 @@ class HistoryAdapter : ListAdapter<HistoriesItem, HistoryAdapter.MyViewHolder>(D
                     transformations(RoundedCornersTransformation(16f))
                 }
                 historyTitle.text = history.prediction
-                historyDate.text = history.createdAt
+                historyDate.text = history.createdAt.formatDate()
                 root.setOnClickListener { view ->
                     val navigateToDetailArticle =
                         HistoryFragmentDirections.actionHistoryFragmentToResultFragment(
@@ -34,6 +38,17 @@ class HistoryAdapter : ListAdapter<HistoriesItem, HistoryAdapter.MyViewHolder>(D
                             )
                         )
                     view.findNavController().navigate(navigateToDetailArticle)
+                }
+                deleteHistoryButton.setOnClickListener {
+                   fragment.showConfirmDialog(
+                       title = fragment.getString(R.string.are_you_sure),
+                       message = "",
+                       positiveButtonText = fragment.getString(R.string.yes),
+                       negativeButtonText = fragment.getString(R.string.no),
+                       onPositiveClick = {
+                           historyViewModel.deleteHistoryById(history.historyId)
+                       }
+                   )
                 }
             }
         }
@@ -44,7 +59,7 @@ class HistoryAdapter : ListAdapter<HistoriesItem, HistoryAdapter.MyViewHolder>(D
         viewType: Int
     ): MyViewHolder {
         val binding = ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
+        return MyViewHolder(binding, fragment, historyViewModel)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

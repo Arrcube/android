@@ -68,4 +68,7 @@
     <string name="result">Result</string>
     <string name="detail_article">Detail Article</string>
     <string name="no_histories_found">No histories found</string>
+    <string name="error_image">Error image</string>
+    <string name="error_timeout">Error: Timeout</string>
+    <string name="delete_histories">Delete histories</string>
 </resources>

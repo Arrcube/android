@@ -24,10 +24,22 @@ class HistoryRepositoryImpl(private val historyService: HistoryService) : Histor
     }
 
     override suspend fun deleteHistories(): Flow<ApiResponse<BaseHistoryResponse>> = flow {
-
+        try {
+            emit(ApiResponse.Loading)
+            val response = historyService.deleteHistories()
+            emit(ApiResponse.Success(response))
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.message.toString()))
+        }
     }
 
     override suspend fun deleteHistoryById(id: String): Flow<ApiResponse<BaseHistoryResponse>> = flow {
-
+        try {
+            emit(ApiResponse.Loading)
+            val response = historyService.deleteHistoryById(id)
+            emit(ApiResponse.Success(response))
+        } catch (e: Exception) {
+            emit(ApiResponse.Error(e.message.toString()))
+        }
     }
 }
