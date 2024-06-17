@@ -2,7 +2,6 @@ package dev.agustacandi.learn.pestsentry.ui.profile.password
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import dev.agustacandi.learn.pestsentry.R
@@ -10,7 +9,6 @@ import dev.agustacandi.learn.pestsentry.base.BaseFragment
 import dev.agustacandi.learn.pestsentry.data.lib.ApiResponse
 import dev.agustacandi.learn.pestsentry.databinding.FragmentChangePasswordBinding
 import dev.agustacandi.learn.pestsentry.utils.Helper
-import dev.agustacandi.learn.pestsentry.utils.PreferenceManager
 import dev.agustacandi.learn.pestsentry.utils.ext.gone
 import dev.agustacandi.learn.pestsentry.utils.ext.setDisable
 import dev.agustacandi.learn.pestsentry.utils.ext.setEnable
@@ -51,7 +49,7 @@ class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
                 }
                 if (newPassword.isNotEmpty() && confirm.isNotEmpty() && newPassword == confirm){
                     passwordViewModel.change(newPassword)
-                    Helper.showSuccessToast(requireActivity(),"Password successfully changed!")
+                    Helper.showSuccessToast(requireActivity(),getString(R.string.success_change_password))
                     findNavController().popBackStack()
                 }
             }
