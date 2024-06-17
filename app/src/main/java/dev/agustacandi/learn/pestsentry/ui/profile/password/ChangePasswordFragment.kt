@@ -12,6 +12,8 @@ import dev.agustacandi.learn.pestsentry.databinding.FragmentChangePasswordBindin
 import dev.agustacandi.learn.pestsentry.utils.Helper
 import dev.agustacandi.learn.pestsentry.utils.PreferenceManager
 import dev.agustacandi.learn.pestsentry.utils.ext.gone
+import dev.agustacandi.learn.pestsentry.utils.ext.setDisable
+import dev.agustacandi.learn.pestsentry.utils.ext.setEnable
 import org.koin.android.ext.android.inject
 
 class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
@@ -64,14 +66,18 @@ class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
         binding.apply {
             passwordViewModel.changeResult.observe(viewLifecycleOwner) {
                 when (it) {
-                    is ApiResponse.Loading -> changeLoadingbar.visibility = View.VISIBLE
+                    is ApiResponse.Loading -> {
+                        progressIndicator.show()
+                        btnUpdatePassword.setDisable()
+                    }
                     is ApiResponse.Success -> {
                         Helper.showSuccessToast(requireActivity(), it.data.message)
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     }
 
                     is ApiResponse.Error -> {
-                        changeLoadingbar.visibility = View.GONE
+                        progressIndicator.gone()
+                        btnUpdatePassword.setEnable()
                         Helper.showErrorToast(requireActivity(), it.errorMessage)
                     }
 

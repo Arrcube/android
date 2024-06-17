@@ -26,11 +26,13 @@ fun Fragment.showConfirmDialog(
 }
 
 fun Fragment.showSessionDialog(
+    title: String = getString(R.string.token_expired),
+    message: String = getString(R.string.token_expired_message),
     onClick: () -> Unit
 ){
     AlertDialog.Builder(requireContext()).apply {
-        setTitle(getString(R.string.token_expired))
-        setMessage(R.string.token_expired_message)
+        setTitle(title)
+        setMessage(message)
         setPositiveButton(getString(R.string.yes)) { _, _ ->
             onClick()
         }

@@ -1,5 +1,6 @@
 package dev.agustacandi.learn.pestsentry.data.predict.service
 
+import dev.agustacandi.learn.pestsentry.data.predict.dto.PredictDiseaseResponse
 import dev.agustacandi.learn.pestsentry.data.predict.dto.PredictResponse
 import okhttp3.MultipartBody
 import retrofit2.http.Multipart
@@ -12,4 +13,10 @@ interface PredictService {
     suspend fun predictPest(
         @Part file: MultipartBody.Part
     ): PredictResponse
+
+    @Multipart
+    @POST("predict/disease")
+    suspend fun predictDisease(
+        @Part file: MultipartBody.Part
+    ): PredictDiseaseResponse
 }

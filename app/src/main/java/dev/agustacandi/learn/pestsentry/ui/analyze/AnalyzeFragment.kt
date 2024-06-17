@@ -103,7 +103,16 @@ class AnalyzeFragment : BaseFragment<FragmentAnalyzeBinding>() {
             }
 
             analyzePlantDiseaseButton.setOnClickListener {
-
+                if (currentImageUri != null) {
+                    if (analyzeViewModel.analyzeImageResult.value == null) {
+                        analyzeViewModel.predictDisease(currentImageUri!!)
+                    }
+                } else {
+                    Helper.showErrorToast(
+                        requireActivity(),
+                        getString(R.string.you_have_not_selected_an_image)
+                    )
+                }
             }
         }
     }
@@ -129,7 +138,9 @@ class AnalyzeFragment : BaseFragment<FragmentAnalyzeBinding>() {
 
                             val navigateToResultFragment =
                                 AnalyzeFragmentDirections.actionAnalyzeFragmentToResultFragment(
-                                    capitalizedString, currentImageUri.toString(), getString(R.string.analyze)
+                                    capitalizedString,
+                                    currentImageUri.toString(),
+                                    getString(R.string.analyze)
                                 )
 
                             findNavController().navigate(navigateToResultFragment)
@@ -138,22 +149,39 @@ class AnalyzeFragment : BaseFragment<FragmentAnalyzeBinding>() {
 
                         is ApiResponse.Error -> {
                             if (result.errorMessage.contains("401")) {
-                                showSessionDialog(
-                                    onClick = {
-                                        try {
-                                            preferenceManager.clearAllPreferences()
-                                            Helper.reloadKoinModules()
-                                            findNavController().navigate(R.id.action_analyzeFragment_to_loginFragment)
-                                        } catch (e: Exception) {
-                                            Helper.showErrorToast(requireActivity(), e.message.toString())
-                                        }
-                                    }
-                                )
+                                showAlertDialogFunc()
                             }
-                            Helper.showErrorToast(requireActivity(), result.errorMessage)
-                            enableButton()
-                            progressIndicator.gone()
-                            analyzeViewModel.setToNull()
+                            val errorMessage = result.errorMessage
+                            actionWhenError(errorMessage)
+                        }
+
+                        else -> progressIndicator.gone()
+                    }
+                }
+            }
+        }
+
+        if (analyzeViewModel.analyzeDiseaseResult.value == null) {
+            analyzeViewModel.analyzeDiseaseResult.observe(viewLifecycleOwner) { result ->
+                binding.apply {
+                    when(result) {
+                        is ApiResponse.Loading -> {
+                            disableButton()
+                            progressIndicator.show()
+
+                        }
+
+                        is ApiResponse.Success -> {
+                            val prediction = result.data.prediction
+                            moveToResultFragment(prediction)
+                        }
+
+                        is ApiResponse.Error -> {
+                            if (result.errorMessage.contains("401")) {
+                                showAlertDialogFunc()
+                            }
+                            val errorMessage = result.errorMessage
+                            actionWhenError(errorMessage)
                         }
 
                         else -> progressIndicator.gone()
@@ -174,6 +202,47 @@ class AnalyzeFragment : BaseFragment<FragmentAnalyzeBinding>() {
         uCrop.getIntent(requireContext()).apply {
             launcherUCrop.launch(this)
         }
+    }
+
+    private fun moveToResultFragment(prediction: String) {
+        val capitalizedString =
+            prediction.replaceFirstChar { it.uppercase() }
+
+        Helper.showSuccessToast(requireActivity(), capitalizedString)
+
+        val navigateToResultFragment =
+            AnalyzeFragmentDirections.actionAnalyzeFragmentToResultFragment(
+                capitalizedString,
+                currentImageUri.toString(),
+                getString(R.string.analyze)
+            )
+
+        findNavController().navigate(navigateToResultFragment)
+        analyzeViewModel.setToNull()
+    }
+
+    private fun actionWhenError(errorMessage: String) {
+        Helper.showErrorToast(requireActivity(), errorMessage)
+        enableButton()
+        binding.progressIndicator.gone()
+        analyzeViewModel.setToNull()
+    }
+
+    private fun showAlertDialogFunc() {
+        showSessionDialog(
+            onClick = {
+                try {
+                    preferenceManager.clearAllPreferences()
+                    Helper.reloadKoinModules()
+                    findNavController().navigate(R.id.action_analyzeFragment_to_loginFragment)
+                } catch (e: Exception) {
+                    Helper.showErrorToast(
+                        requireActivity(),
+                        e.message.toString()
+                    )
+                }
+            }
+        )
     }
 
     private fun setImagePreview() {

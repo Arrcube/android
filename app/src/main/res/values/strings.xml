@@ -71,4 +71,6 @@
     <string name="error_image">Error image</string>
     <string name="error_timeout">Error: Timeout</string>
     <string name="delete_histories">Delete histories</string>
+    <string name="success_edit_profile">Username and email successfully updated!</string>
+    <string name="success_edit_profile_message">Please login again to reflect changes.</string>
 </resources>
