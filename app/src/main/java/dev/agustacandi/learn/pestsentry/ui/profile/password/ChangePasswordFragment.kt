@@ -9,14 +9,17 @@ import dev.agustacandi.learn.pestsentry.base.BaseFragment
 import dev.agustacandi.learn.pestsentry.data.lib.ApiResponse
 import dev.agustacandi.learn.pestsentry.databinding.FragmentChangePasswordBinding
 import dev.agustacandi.learn.pestsentry.utils.Helper
+import dev.agustacandi.learn.pestsentry.utils.PreferenceManager
 import dev.agustacandi.learn.pestsentry.utils.ext.gone
 import dev.agustacandi.learn.pestsentry.utils.ext.setDisable
 import dev.agustacandi.learn.pestsentry.utils.ext.setEnable
+import dev.agustacandi.learn.pestsentry.utils.ext.showSessionDialog
 import org.koin.android.ext.android.inject
 
 class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
 
     private val passwordViewModel : PasswordViewModel by inject()
+    private val preferenceManager: PreferenceManager by inject()
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -74,6 +77,22 @@ class ChangePasswordFragment : BaseFragment<FragmentChangePasswordBinding>() {
                     }
 
                     is ApiResponse.Error -> {
+                        if (it.errorMessage.contains("401")) {
+                            showSessionDialog(
+                                onClick = {
+                                    try {
+                                        preferenceManager.clearAllPreferences()
+                                        Helper.reloadKoinModules()
+                                        findNavController().navigate(R.id.action_changePasswordFragment_to_loginFragment)
+                                    } catch (e: Exception) {
+                                        Helper.showErrorToast(
+                                            requireActivity(),
+                                            e.message.toString()
+                                        )
+                                    }
+                                }
+                            )
+                        }
                         progressIndicator.gone()
                         btnUpdatePassword.setEnable()
                         Helper.showErrorToast(requireActivity(), it.errorMessage)

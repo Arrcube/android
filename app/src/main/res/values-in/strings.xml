@@ -76,4 +76,7 @@
     <string name="success_edit_profile_message">Silahkan login ulang untuk menerapkan perubahan.</string>
     <string name="success_change_password">Kata sandi berhasil diubah!</string>
     <string name="articles">Artikel</string>
+    <string name="delete_account_icon">Ikon hapus akun</string>
+    <string name="delete_account">Hapus Akun</string>
+    <string name="delete_account_dialog_description">Aksi ini akan menghapus akun anda secara permanen</string>
 </resources>

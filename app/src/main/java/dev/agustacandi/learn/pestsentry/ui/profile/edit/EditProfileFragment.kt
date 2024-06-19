@@ -9,6 +9,7 @@ import dev.agustacandi.learn.pestsentry.base.BaseFragment
 import dev.agustacandi.learn.pestsentry.data.lib.ApiResponse
 import dev.agustacandi.learn.pestsentry.databinding.FragmentEditProfileBinding
 import dev.agustacandi.learn.pestsentry.utils.Helper
+import dev.agustacandi.learn.pestsentry.utils.PreferenceManager
 import dev.agustacandi.learn.pestsentry.utils.ext.gone
 import dev.agustacandi.learn.pestsentry.utils.ext.setDisable
 import dev.agustacandi.learn.pestsentry.utils.ext.setEnable
@@ -16,7 +17,10 @@ import dev.agustacandi.learn.pestsentry.utils.ext.showSessionDialog
 import org.koin.android.ext.android.inject
 
 class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
+
     private val editProfileViewModel : EditProfileViewModel by inject()
+    private val preferenceManager : PreferenceManager by inject()
+
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -78,7 +82,20 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
 
                     is ApiResponse.Error -> {
                         if (result.errorMessage.contains("401")) {
-                            findNavController().navigate(R.id.action_editProfileFragment_to_loginFragment)
+                            showSessionDialog(
+                                onClick = {
+                                    try {
+                                        preferenceManager.clearAllPreferences()
+                                        Helper.reloadKoinModules()
+                                        findNavController().navigate(R.id.action_editProfileFragment_to_loginFragment)
+                                    } catch (e: Exception) {
+                                        Helper.showErrorToast(
+                                            requireActivity(),
+                                            e.message.toString()
+                                        )
+                                    }
+                                }
+                            )
                         }
                         progressIndicator.gone()
                         btnUpdateProfile.setEnable()

@@ -75,4 +75,7 @@
     <string name="success_edit_profile_message">Please login again to reflect changes.</string>
     <string name="success_change_password">Password successfully changed!</string>
     <string name="articles">Articles</string>
+    <string name="delete_account_icon">Delete account icon</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="delete_account_dialog_description">This action will delete your account permanently</string>
 </resources>

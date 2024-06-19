@@ -38,6 +38,19 @@ class UserRepositoryImpl(
         }
     }
 
+    override fun deleteAccount(): Flow<ApiResponse<ChangeResponse>> = flow {
+        try {
+            emit(ApiResponse.Loading)
+            //get user id from preference
+            val id = preferenceManager.getId
+            val response = userService.deleteAccount(id!!)
+            emit(ApiResponse.Success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(ApiResponse.Error(e.message.toString()))
+        }
+    }
+
     override fun logout(): Boolean {
         return try {
             preferenceManager.clearAllPreferences()

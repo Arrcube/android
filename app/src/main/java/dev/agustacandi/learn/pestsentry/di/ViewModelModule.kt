@@ -19,7 +19,7 @@ val viewModelModule = module {
     viewModel { LoginViewModel(get()) }
     viewModel { AnalyzeViewModel(get()) }
     viewModel { HomeViewModel(get()) }
-    viewModel { ProfileViewModel(get()) }
+    viewModel { ProfileViewModel(get(), get()) }
     viewModel { RegisterViewModel(get()) }
     viewModel { PasswordViewModel(get()) }
     viewModel { ArticleViewModel(get()) }
